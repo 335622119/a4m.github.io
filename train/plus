@@ -1,11 +1,17 @@
+<?php header("Content-type:text/html;charset=utf-8"); ?>
+<!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8">
+
+<style>
+body{background:grey}
+</style>
+
+</head>
+
 <body>
-<?php
-a = $_GET['a'];
-b = $_GET['b'];
-echo a*b;
+<input name="xss" value="<?php echo htmlspecialchars($_GET['xss']) ?>"> 
 
-
-?>
 </body>
 </html>
