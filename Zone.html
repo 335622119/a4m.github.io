@@ -1,1 +1,405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<title>{$title}</title> 
+<meta name="keywords" content="{$keyword}" /> 
+<meta name="description" content="{$description}"> 
+</head> 
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/CSS/top.css" /> 
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/CSS/index.css" /> 
 
+<script src="__PUBLIC__/Home/js/jquery-1.7.2.min.js" type="text/javascript"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/js/artDialog/jquery.artDialog.js?skin=default"></script> 
+<script type="text/javascript" src="__PUBLIC__/Admin/js/artDialog/plugins/iframeTools.js"></script> 
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.slide.js"></script> 
+<script type="text/javascript"> 
+$(function (){ 
+  /* 用按钮控制图片左右滚动 */ 
+  $(".hotPic .JQ-slide").Slide({ 
+    effect:"scroolX", 
+    autoPlay:true, 
+    speed:"normal", 
+    timer:3000, 
+    steps:1 
+  }); 
+}); 
+
+
+function openMsgWindow() { 
+    art.dialog({ 
+        id:'msgDialog', 
+        title: '投票结果', 
+        lock:false, 
+        fixed:true, 
+        width:300, 
+        height:100, 
+        cancel: function(){ 
+            return true; 
+        }, 
+        content: "<foreach name='voteList' item="vo">{$vo.name} : {$vo.rate}%<br/></foreach>" 
+    }); 
+} 
+
+</script> 
+<body> 
+
+
+<!--导入公共头部--> 
+<include file="Layout:layoutHeader" /> 
+<!--导入公共头部end--> 
+   
+     
+<!--背景底色开始-->   
+    <div id="background"> 
+     
+<!--广告条开始-->   
+<div id="gg"> 
+  <ul> 
+      <li class="ggz"><img src="__PUBLIC__/Home/images/lz.jpg" /></li> 
+        <li class="gg1">********今天是<?php echo date(' Y 年  m 月 d 日')?>，星期<?php echo weekday();?>，欢迎您来到社区矫正中心网，您是本站第[ <?php echo $visitors?> ]名访客********</li> 
+        <li class="ggr"><img src="__PUBLIC__/Home/images/ry.jpg" /></li> 
+    </ul> 
+</div> 
+     
+         
+         
+         
+        <div id="container"> 
+           <div id="container01_1"> 
+                <div id="container01"> 
+                    <div class="container_2"> 
+                        <ul> 
+                            <li class="left"><img src="__PUBLIC__/Home/images/jzgl.jpg" /></li> 
+                            <li class="right"><a href="{:U('Jzgl/index')}"><img src="__PUBLIC__/Home/images/you.jpg" /></a></li> 
+                        </ul> 
+                    </div> 
+                     
+                     
+                    <div class="container_7"> 
+                        <ul> 
+                        <?php 
+                        if(!empty($jzgl)){ 
+                        foreach($jzgl as $v){ 
+                        ?> 
+                            <li class="container_7l" title="<?php echo $v['title']?>"><a href="{:U('Article/info',array('id'=>$v['id']))}"><span class="span02">&nbsp;·&nbsp;<?php 
+                        if(mb_strlen($v['title'],'utf8') >18){ 
+                        echo mb_substr($v['title'],0,18,'utf8'),'...'; 
+                         }else{ 
+                        echo $v['title']; 
+                        } 
+                        ?></span><span class="span"><?php echo date('Y-m-d H:i',strtotime($v['addtime']))?></span></a></li> 
+                        <?php }}?> 
+                        </ul> 
+                    </div> 
+                </div> 
+                 
+               
+           
+                <div id="container02"> 
+                    <div class="container_2"> 
+                        <ul> 
+                            <li class="left"><img src="__PUBLIC__/Home/images/jzdt.jpg" /></li> 
+                            <li class="right"><a href="{:U('Jzdt/index')}"><img src="__PUBLIC__/Home/images/you.jpg" /></a></li> 
+                        </ul> 
+                    </div> 
+                    <script type="text/javascript" src="__PUBLIC__/Home/js/script.js"></script> 
+                     
+                         <div class="infopic"> 
+              <div class="picbox"> 
+                <ul class="gallery piclist"><!-- 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_1.jpg" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_2.jpg" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_3.jpg" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_4.png" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_5.jpg" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_6.png" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_7.jpg" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_8.jpg" /></a></li> 
+                  <li><a href="###" rel="prettyPhoto[]"><img src="__PUBLIC__/Home/images/pic_9.jpg" /></a></li> 
+                --> 
+                <foreach name="jzdt_data" item="vo"> 
+                  <li><a href="{:U('Article/info',array('id'=>$vo['id']))}" rel="prettyPhoto[]"><img src="__ROOT__{$vo.cover}" /></a></li> 
+                </foreach> 
+                </ul> 
+              </div> 
+              <div class="pic_prev"></div> 
+              <div class="pic_next"></div> 
+            </div><!--infopic end--> 
+                     
+                </div> 
+             
+             
+          <div id="ss_1"> 
+           
+               <div class="tzgg"> 
+                   <div class="tzggl"><img src="__PUBLIC__/Home/images/tzgg.jpg" /></div> 
+                   <div> 
+                       <marquee id="affiche" align="left" behavior="scroll" height="137" width="254" direction="up" loop="-1" scrollamount="2" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
+                           {$gonggao} 
+                       </marquee> 
+                   </div> 
+
+
+               </div> 
+                   
+             <div id="ss"> 
+                 <div id="ss01"><img src="__PUBLIC__/Home/images/yinying.jpg" /></div> 
+                     <div id="ss02"> 
+                       <div id="ss04"> 
+                       <form method="get" action="{:U('Article/alist')}"/> 
+                         <ul> 
+                        <li><img src="__PUBLIC__/Home/images/fdj.jpg"  style=" margin:4px 0 0 3px; float:left;"/> 
+                        <input type="text" name="keyword" class="input_text" value="搜索" onfocus="javascript:if(this.value=='搜索')this.value='';" onblur="javascript:if(this.value=='')this.value='搜索';"/> 
+                  <span class="span_0"><input type="submit" class="submit_btn" value="" /></span> 
+                             </li>   
+                  </ul> 
+                  </form> 
+                        </div> 
+               
+                   
+                  </div> 
+                 <div id="dl"> 
+                 <form method="post" action="{:U('Login/login_ok')}"> 
+             <ul id="ul"> 
+                      <li id="d2"><img src="__PUBLIC__/Home/images/yym.jpg"  class="yym"/><input type="text" id="yym_inpu" name="username"/></li> 
+                        <li id="d2" style=" margin-top:6px;"><img src="__PUBLIC__/Home/images/mm.jpg" class="yym" /><input type="password" id="yym_inpu" name="password"/></li> 
+                    </ul> 
+                     
+                    <ul> 
+                      <li class="jzmm"><input type="checkbox" name="remember" value="1"/> 记住密码</li> 
+                        <li class="jzmm_1"><img src="__PUBLIC__/Home/images/shu.jpg" /></li> 
+                        <li class="jzmm_2"><a href="#">忘记密码</a></li> 
+                        <li class="jzmm_3_1"><input type="submit" value="" class="jzmm_3"/></li> 
+                        <li class="jzmm_4_1"><input type="button" value="" class="jzmm_4"/></li> 
+                    </ul> 
+                    </form> 
+               </div> 
+               
+               
+               <div class="zxbm"> 
+                   <div class="zxbm02"> 
+                      <ul> 
+                          <li class="zxbm02m"><img src="__PUBLIC__/Home/images/zxdc.jpg" /></li> 
+                        </ul> 
+                         
+                         <div class="zxbm03"> 
+                              <span class="zxbm03_li">你认为本站存在的最大不足是</span> 
+                            <form method="post" action="{:U('Vote/index')}"> 
+                            <ul class="ui2"> 
+                              <foreach name="voteList" item="vo"> 
+                                <li class="zxbm04_li" style="clear: left;"><input type="radio" name="vote" value="{$vo.id}" />{$vo.name}</li> 
+                              </foreach> 
+       
+                                <li style="float: left;"><input type="text" name="info"  class="zxbm05_li01"/></li> 
+                            </ul> 
+
+                            <ul class="ui3"> 
+                              <li style="float:left;"><input  class="tp" type="submit" value="投票" style="float: left;"></li> 
+                                <li style="float:left;"><a href="javascript:openMsgWindow();"><img src="__PUBLIC__/Home/images/ck.jpg" /></a></li> 
+                            </ul> 
+                                                        </form> 
+                       </div> 
+                    </div> 
+                     
+                     
+                    <div class="bmfw"> 
+            <div class="bmfw1"><img src="__PUBLIC__/Home/images/bmfe.jpg" /></div> 
+                        <div class="bmfw2"> 
+                          <ul> 
+                              <?php 
+                              $i =0; 
+                              if(!empty($bianmin)){ 
+                                foreach($bianmin as $v){ 
+                                $i++; 
+                              ?> 
+                              <li <?php 
+                              if($i==1 || $i==2 || $i==3 || $i==7 || $i==8 || $i==9 || $i== 13 || $i==14 || $i==15){ 
+                              echo "class='bmfw2_li'"; 
+                              } 
+                              ?>><a target="_blank" href="<?php echo $v['url']?>"><?php echo $v['title']?></a></li> 
+                                <?php }}?> 
+                            </ul> 
+                        </div> 
+                         
+                    </div> 
+               </div> 
+     
+               
+
+               
+             </div> 
+          </div> 
+             
+         
+             
+<!--志愿者风采开始--> 
+
+             
+            <div id="container03" style="position:relative;"> 
+              <div class="container_4" style="position:absolute;top:-34px;left:0;"> 
+                    <a href="{:U('Jztz/index')}"><img src="__PUBLIC__/Home/images/you.jpg" /></a> 
+                </div> 
+                         
+        <!-- 图片 --> 
+          <div class="hotPic"> 
+            <div class="JQ-slide"> 
+              <div class="JQ-slide-nav"> 
+              <a class="prev" href="javascript:void(0);">&#8249;</a> 
+              <a class="next" href="javascript:void(0);">&#8250;</a> 
+              </div> 
+              <div class="wrap"> 
+                <ul class="JQ-slide-content imgList"> 
+                <?php 
+                if(!empty($jzxc_img)){ 
+                foreach($jzxc_img as $v){ 
+        ?> 
+                  <li> 
+                    <a href="javascript:void(0);" class="img"><img src="__ROOT__<?php echo $v['path']?>" width="140" height="120" alt="<?php echo $v['title']?>" /></a> 
+                    <a href="javascript:void(0);" class="txt"><?php echo $v['title']?></a> 
+                  </li> 
+                        <?php }}?> 
+                </ul> 
+              </div> 
+            </div> 
+          </div>   
+        <!-- 图片 --> 
+            </div> 
+
+
+
+         <div id="container02_2"> 
+                    <div class="container_2"> 
+                        <ul> 
+                            <li class="left"><img src="__PUBLIC__/Home/images/azbf.png" /></li> 
+                            <li class="right"><a href="{:U('Azbj/index')}"><img src="__PUBLIC__/Home/images/you.jpg" /></a></li> 
+                        </ul> 
+                    </div> 
+                 
+                         <div class="infopic"> 
+              <div class="picbox"> 
+                <ul class="gallery piclist"> 
+                <?php 
+                if(!empty($azbj_img)){ 
+                                foreach($azbj_img as $v){ 
+                ?> 
+                  <li><a href="javascript:void(0);" rel="prettyPhoto[]"><img style="width:120px;height:144px;" src="__ROOT__<?php echo $v['path']?>" /></a></li> 
+                                <?php }}?> 
+                </ul> 
+              </div> 
+              <div class="pic_prev"></div> 
+              <div class="pic_next"></div> 
+            </div><!--infopic end--> 
+                </div> 
+
+
+
+
+
+             
+             
+          <div id="container04"> 
+              <div class="container_6"> 
+                  <ul> 
+                      <li class="container_6_li01"><img src="__PUBLIC__/Home/images/xljz.png" /></li> 
+                        <li class="container_6_li02"><a href="{:U('Xljkjy/index')}"><img src="__PUBLIC__/Home/images/you.jpg" /></a></li> 
+                    </ul> 
+                </div> 
+                 
+                <div class="container_7"> 
+                  <ul> 
+                  <?php 
+                  if(!empty($xljz)){ 
+                    foreach($xljz as $v){ 
+                  ?> 
+                      <li class="container_7l"><a href="{:U('Article/info',array('id'=>$v['id']))}"><span class="span02">&nbsp;·&nbsp;<?php echo $v['title']?></span><span class="span"><?php echo $v['addtime']?></span></a></li> 
+                    <?php }}?> 
+                    </ul> 
+                </div> 
+            </div> 
+             
+<!--心里矫正-->             
+            <div id="container05_51"> 
+              <div class="container_8"> 
+                    <ul> 
+                        <li class="container_8l"><img src="__PUBLIC__/Home/images/flfg.jpg" /></li> 
+                        <li class="container_6_li02"><a href="{:U('Laws/index')}"><img src="__PUBLIC__/Home/images/you.jpg" /></a></li> 
+                    </ul> 
+                </div> 
+                 
+                 <div class="container_7"> 
+                  <ul> 
+                  <ul> 
+                  <?php 
+                  if(!empty($laws)){ 
+                    foreach($laws as $v){ 
+                  ?> 
+                      <li class="container_7l" title="<?php echo $v['title']?>"><a href="{:U('Article/info',array('id'=>$v['id']))}"><span class="span02">&nbsp;·&nbsp;<?php 
+                        if(mb_strlen($v['title'],'utf8') >18){ 
+                        echo mb_substr($v['title'],0,18,'utf8'),'...'; 
+                         }else{ 
+                        echo $v['title']; 
+                        } 
+                        ?></span><span class="span"><?php echo date('Y-m-d H:i',strtotime($v['addtime']))?></span></a></li> 
+                    <?php }}?> 
+                    </ul> 
+                     
+                    </ul> 
+                </div> 
+            </div>           
+             
+             
+             
+            <div id="container05_5"> 
+              <div class="container_8"> 
+                    <ul> 
+                        <li class="container_8l"><img src="__PUBLIC__/Home/images/sqgy.jpg" /></li> 
+                        <li class="container_6_li02"><a href="{:U('Sqgy/index')}"><img src="__PUBLIC__/Home/images/you.jpg" /></a></li> 
+                    </ul> 
+                </div> 
+                 
+                 <div class="container_7"> 
+                         
+                  <?php 
+                  if(!empty($sqgy)){ 
+                    foreach($sqgy as $v){ 
+                  ?> 
+                      <li class="container_7l" title="<?php echo $v['title']?>"><a href="{:U('Article/info',array('id'=>$v['id']))}"><span class="span02">&nbsp;·&nbsp;<?php 
+                        if(mb_strlen($v['title'],'utf8') >18){ 
+                        echo mb_substr($v['title'],0,18,'utf8'),'...'; 
+                         }else{ 
+                        echo $v['title']; 
+                        } 
+                        ?></span><span class="span"><?php echo date('Y-m-d H:i',strtotime($v['addtime']))?></span></a></li> 
+                    <?php }}?> 
+                         
+                </div> 
+            </div>           
+             
+
+         
+             
+
+             
+        </div> 
+    </div> 
+   </div> 
+   
+   
+   <div class="yqlj"> 
+     <ul> 
+      <li class="yqlj_li"><img src="__PUBLIC__/Home/images/yqlj.jpg" /></li> 
+      <?php 
+      if(!empty($friends)){ 
+        foreach($friends as $v){ 
+      ?> 
+        <li class="yqlj01"><a target="_blank;" href="<?php echo $v['furl']?>"><?php echo $v['fname']?></a></li> 
+        <?php }}?> 
+    </ul> 
+   </div> 
+   
+   
+   
+   
+   
+<include file="Public:bottom" /> 
