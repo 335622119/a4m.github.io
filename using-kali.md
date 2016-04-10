@@ -1,4 +1,4 @@
-#problem why using kali
+#problem while using kali
 
 ## apt source.list
 ```
