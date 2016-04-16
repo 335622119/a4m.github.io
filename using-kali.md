@@ -18,6 +18,9 @@ deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling-only main non-free con
 
 ## heartbleed
 nmap+msfconsole</br>
+
+learn from http://blog.163.com/xiao106347/blog/static/215992078201464059117/
+
 非常实用的hack工具组合，首先得升级msfconsole至最新版，然后给nmap添加一个针对heartbleed的扫描脚本，用来发现心脏出血漏洞：
 ```
 cd /usr/share/nmap/scripts/
