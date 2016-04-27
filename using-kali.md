@@ -41,3 +41,19 @@ set RPORT 443
 set VERBOSE true
 exploit
 ```
+
+#
+
+## antSword
+项目地址：`https://github.com/antoor/antSword`
+主要问题是安装过程：参照 http://my.oschina.net/blogshi/blog/260953 
+```
+    这就妥妥的了，node文件夹具体放在哪，叫什么名字随你怎么定。然后设置全局：
+
+ln -s /home/kun/mysofltware/node-v0.10.28-linux-x64/bin/node /usr/local/bin/node
+ln -s /home/kun/mysofltware/node-v0.10.28-linux-x64/bin/npm /usr/local/bin/npm
+
+    这里/home/kun/mysofltware/这个路径是你自己放的，你将node文件解压到哪里就是哪里。
+
+```
+
