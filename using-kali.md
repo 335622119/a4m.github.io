@@ -60,3 +60,10 @@ ln -s /home/kun/mysofltware/node-v0.10.28-linux-x64/bin/npm /usr/local/bin/npm
 ## virtualbox
 win 10 iso
 `ed2k://|file|cn_windows_10_enterprise_2015_ltsb_x64_dvd_6848425.iso|3907538944|38E47AB92B6D97DF2BE602BBC9969D34|/`
+
+## 更新kali自带的burpsuite
+从官网下载最新版的burpsuite：https://portswigger.net/
+`chmod 755 burpsuite.jar`
+将新版本移动到/usr/bin目录下，然后更名为burpsuite：
+`mv burpsuite.jar /usr/bin`
+`mv burpsuite.jar burpsuite`
