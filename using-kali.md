@@ -63,7 +63,10 @@ win 10 iso
 
 ## 更新kali自带的burpsuite
 从官网下载最新版的burpsuite：https://portswigger.net/
+
 `chmod 755 burpsuite.jar`
+
 将新版本移动到/usr/bin目录下，然后更名为burpsuite：
+
 `mv burpsuite.jar /usr/bin`
 `mv burpsuite.jar burpsuite`
