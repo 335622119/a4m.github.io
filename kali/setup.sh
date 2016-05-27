@@ -9,8 +9,12 @@ deb http://mirrors.tuna.tsinghua.edu.cn/kali-security sana/updates contrib non-f
 deb-src http://mirrors.tuna.tsinghua.edu.cn/kali-security sana/updates main non-free contrib
 EOF
 
-apt update
+apt update && apt dist-upgrade -y && apt-get autoremove -y &&apt-get autoclean -y
+#安装基础软件
 apt install git python-pip -y
+
+#安装sqlmap，nmap
+apt install sqlmap nmap
 
 #在/opt里安装lijiejie套装
 cd /opt
