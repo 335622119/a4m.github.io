@@ -70,3 +70,16 @@ win 10 iso
 
 `mv burpsuite.jar /usr/bin`
 `mv burpsuite.jar burpsuite`
+
+##use john to crack rar,zip
+1. use binwalk to check it first!
+2. use `rar2john` or `zip2john` to get a hashes
+3. use john  to crack it
+```
+rar2john rarfile.rar > 1
+john 1 --wordlist=1111111111111.lst
+john 1 --show
+```
+
+
+
