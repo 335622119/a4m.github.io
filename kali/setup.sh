@@ -28,3 +28,7 @@ pip install dnspython
 git clone https://github.com/lijiejie/GitHack.git
 git clone https://github.com/lijiejie/IIS_shortname_Scanner.git
 git clone https://github.com/lijiejie/htpwdScan.git
+
+#安装其他工具
+git clone https://github.com/webhhh/pathscanner.git
+
