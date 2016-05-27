@@ -12,6 +12,7 @@ EOF
 apt update
 apt install git python-pip -y
 
+#在/opt里安装lijiejie套装
 cd /opt
 
 git clone https://github.com/lijiejie/BBScan.git
@@ -21,4 +22,5 @@ git clone https://github.com/lijiejie/subDomainsBrute.git
 pip install dnspython
 
 git clone https://github.com/lijiejie/GitHack.git
-
+git clone https://github.com/lijiejie/IIS_shortname_Scanner.git
+git clone https://github.com/lijiejie/htpwdScan.git
