@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sudo apt update
-sudo apt install git python-pip -y
+apt update
+apt install git python-pip -y
 
 cd /opt
 
