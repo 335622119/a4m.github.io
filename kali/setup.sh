@@ -14,7 +14,7 @@ apt update && apt dist-upgrade -y && apt-get autoremove -y &&apt-get autoclean -
 apt install git python-pip -y
 
 #安装sqlmap，nmap
-apt install sqlmap nmap
+apt install sqlmap nmap john
 
 #在/opt里安装lijiejie套装
 cd /opt
