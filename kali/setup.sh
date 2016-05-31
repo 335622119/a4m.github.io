@@ -32,7 +32,7 @@ alias bbscan='python /opt/BBScan/BBScan.py --network 24 -p 30 --host'
 
 EOF
 
-
+apt update && apt dist-upgrade -y && apt-get autoremove -y &&apt-get autoclean -y
 
 #安装基础软件
 apt install git python-pip -y
