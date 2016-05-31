@@ -20,8 +20,20 @@ curl $domain -H "User-Agent: `cat $file | xargs echo -n `"
 EOF
 chmod 755 /usr/bin/cloudeye
 
+#add /opt to CDPATH
+cat >> ~/.bashrc <<EOF
+export CDPATH=.:/opt:~
+EOF
 
-apt update && apt dist-upgrade -y && apt-get autoremove -y &&apt-get autoclean -y
+#add some alias
+cat >> ~/.bashrc <<EOF
+alias apt1='apt update && apt dist-upgrade -y && apt-get autoremove -y &&apt-get autoclean -y'
+alias bbscan='python /opt/BBScan/BBScan.py --network 24 -p 30 --host'
+
+EOF
+
+
+
 #安装基础软件
 apt install git python-pip -y
 
@@ -43,4 +55,14 @@ git clone https://github.com/lijiejie/htpwdScan.git
 
 #安装其他工具
 git clone https://github.com/webhhh/pathscanner.git
+
+#install web service 
+#guide:https://www.leavesongs.com/SHARE/ubuntu-willy-lamp-install-configure.html
+apt install apache2 mysql-server mysql-client php5 libapache2-mod-php5
+
+#you will still need to view the web above to do it correctly!
+#mysql_secure_installation
+#edit /etc/apache2/sites-enable/000-default.conf 
+#add `Include mods-enabled/php5.conf`
+
 
