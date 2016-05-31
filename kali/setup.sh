@@ -11,6 +11,9 @@ deb http://mirrors.tuna.tsinghua.edu.cn/kali-security sana/updates contrib non-f
 deb-src http://mirrors.tuna.tsinghua.edu.cn/kali-security sana/updates main non-free contrib
 EOF
 
+echo 'source edited!'
+
+
 #add cloudeye support to export data
 cat > /usr/bin/cloudeye <<EOF
 #!/bin/bash
