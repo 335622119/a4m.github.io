@@ -1,5 +1,13 @@
 #problem while using kali
 
+##update flash plugin
+1. 在https://get.adobe.com/cn/flashplayer/下载flash插件
+2. 解压
+```
+cp libflashplayer.so ~/.mozilla/plugins/
+cp -r usr/* /usr
+```
+
 ## apt source.list
 ```
 #tsinghua mirrors
