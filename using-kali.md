@@ -3,7 +3,7 @@
 ##update flash plugin
 > 不知道为什么kali 自带的 update-flashplugin-nonfree --install 并不能成功更新flashplugin
 
-1. 在https://get.adobe.com/cn/flashplayer/下载flash插件，或者是这个链接 https://fpdownload.adobe.com/get/flashplayer/pdc/11.2.202.621/install_flash_player_11_linux.x86_64.tar.gz  用的时候记得改下版本
+1. 在https://get.adobe.com/cn/flashplayer/ 下载flash插件，或者是这个链接 https://fpdownload.adobe.com/get/flashplayer/pdc/11.2.202.621/install_flash_player_11_linux.x86_64.tar.gz  用的时候记得改下版本
 2. 解压
 ```
 wget https://fpdownload.adobe.com/get/flashplayer/pdc/11.2.202.621/install_flash_player_11_linux.x86_64.tar.gz -O /tmp/flash.tar.gz
