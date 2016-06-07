@@ -13,6 +13,15 @@ deb http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling-only main non-free con
 #deb-src http://mirrors.tuna.tsinghua.edu.cn/kali kali-rolling-only main non-free contrib
 ```
 
+### input method
+以前一直用ibus-rime来处理输入法，结果在gedit下根本无法输入中文
+现在改用fcitx-rime
+
+1. apt remove ibus && apt autoclean
+2. apt install fcitx fcitx-rime
+3. im-config
+4. fcitx-config-gtk3 调整一下输入法次序，还有切换输入法的快捷键等问题就好了
+
 ### update flash plugin
 > 不知道为什么kali 自带的 update-flashplugin-nonfree --install 并不能成功更新flashplugin
 
